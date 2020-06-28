@@ -77,3 +77,39 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Как запустить проект
+
+git clone ссылки на репозиторий. После composer install и npm install в терминале. Сделать дамп базы api.sql MySql Server. Настроить .env соединение к бд.
+
+## Инструкции API
+
+Ключ токкен для доступа к АПИ "NGiF0GgD7qtAslluFTTAWaf0JNAMc8dZ1GyvqNW60Gd6QfwcTXaLrmJCfSQm2TTK12G0F7VGwoiK8gjY"
+
+# Метод add
+
+/member/add/'NAME'|'SURNAME'|'EMAIL'|'PARTY_ID'?api_token=NGiF0GgD7qtAslluFTTAWaf0JNAMc8dZ1GyvqNW60Gd6QfwcTXaLrmJCfSQm2TTK12G0F7VGwoiK8gjY
+В данный метод параметры передаются через разделитель "|", если какое то из полей должно быть пустым, то тогда ставиться просто разделитель.(Пример: Ivan||ivan@mail.ru|1)
+В поле "PARTY_ID" передает ид существующего мероприятия.
+
+# Метод get
+
+/member/get/'ID'?api_token=NGiF0GgD7qtAslluFTTAWaf0JNAMc8dZ1GyvqNW60Gd6QfwcTXaLrmJCfSQm2TTK12G0F7VGwoiK8gjY
+В данный метод передается единственный параметр, это id участника. ID участника можно получить в ответе метода add в поле "id"
+
+# Метод update
+
+/member/update/{id}/'NAME'|'SURNAME'|'EMAIL'|'PARTY_ID'?api_token=NGiF0GgD7qtAslluFTTAWaf0JNAMc8dZ1GyvqNW60Gd6QfwcTXaLrmJCfSQm2TTK12G0F7VGwoiK8gjY
+В данный метод передается id участника. и после передаются параметры см. метод add.
+
+# Метод update
+
+/member/delete/{id}?api_token=NGiF0GgD7qtAslluFTTAWaf0JNAMc8dZ1GyvqNW60Gd6QfwcTXaLrmJCfSQm2TTK12G0F7VGwoiK8gjY
+В данный метод передается id участника.
+
+# фильтрация по мероприятию
+
+Данный метод возвращает json строку со всеми участниками конкретного мероприятия.
+/member/get/party/{id}?api_token=NGiF0GgD7qtAslluFTTAWaf0JNAMc8dZ1GyvqNW60Gd6QfwcTXaLrmJCfSQm2TTK12G0F7VGwoiK8gjY
+В данный метод передается id мероприятия. Ид мероприятия можно посмотреть в бд через phpmyadmin или другие средства.
+На данный момент там только одно мероприятие его ИД = 1.
